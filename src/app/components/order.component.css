@@ -1,0 +1,20 @@
+.contents {
+    display: flexbox;
+    text-align: center;
+}
+
+/* .itemList {
+    width:
+} */
+
+.itemText {
+    color: black;
+}
+
+.firstRow {
+    margin-bottom: 3vh;
+}
+
+.deleteButton {
+    float: right;
+}

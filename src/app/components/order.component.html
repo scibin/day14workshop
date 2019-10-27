@@ -1,0 +1,76 @@
+<h1 style="text-align: center;">Shopping cart</h1>
+<br>
+
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class='inputFields'>
+        <mat-grid-list cols="3" rowHeight="6:1">
+            <div class='description'>
+                <mat-grid-tile>Username:</mat-grid-tile>
+            </div>
+            <mat-grid-tile>
+                <input type='text' [formControlName]="'name'">
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <button type="reset" mat-raised-button color="basic" (click)="formReset()">Reset form</button>
+            </mat-grid-tile>                
+            <div class='description'>
+                    <mat-grid-tile>Item:</mat-grid-tile>
+                </div>
+            <mat-grid-tile>
+                <input type='text' [(value)]="userInputItem" (keyup)="itemValueBinder($event)">
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <button type="button" mat-raised-button color="accent" (click)="onAddItem()">Add item</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="center center" class='saveButton'>
+        <button type="submit" mat-raised-button color="warn">Save</button>
+        <button type="button" mat-stroked-button color="basic" (click)="onLoad()">Load</button>
+    </div>
+</form>
+
+<br>
+<div class='contents'>
+    <mat-card color="">Contents</mat-card>
+
+    <mat-action-list>
+        <div class='itemList' *ngFor="let item of itemArray; let i = index;">
+            <div class='deleteButton'>
+                <button type="button" mat-raised-button color="warn" (click)="deleteItem(i)">Delete</button>
+            </div>
+            <div>
+                <mat-list-item  class='itemText'>{{ item }}</mat-list-item>
+            </div>
+        </div>
+    </mat-action-list>
+</div>
+
+
+<!-- fxLayout="row" fxLayoutAlign="center center" -->
+        <!-- <button mat-list-item (click)="test()" class='itemList'
+        *ngFor="let item of itemArray; let i = index;">
+
+            <span>{{ item }}</span>
+            <button type="button" mat-raised-button color="warn" class='deleteButton'>Delete</button>
+        </button> -->
+
+<!-- <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class='inputFields'>
+        <div class='firstRow'>
+            <span class='description'>Username: </span>
+            <input type='text' [formControlName]="'name'">
+            <button type="reset" mat-raised-button color="basic">Reset</button>
+        </div>
+        <div class='secondRow'>
+            <span class='description'>Item: </span>
+            <input type='text' [(value)]="userInputItem" (keyup)="itemValueBinder($event)">
+            <button type="button" mat-raised-button color="accent" (click)="onAddItem()">Add item</button>
+        </div>
+    </div>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="center center" class='saveButton'>
+        <button type="submit" mat-raised-button color="warn">Save</button>
+    </div>
+</form> -->

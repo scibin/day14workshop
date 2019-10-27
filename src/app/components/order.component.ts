@@ -16,7 +16,12 @@ export class OrderComponent implements OnInit {
 
   editForm: FormGroup;
   userInputItem: string = '';
-  itemArray: string[] = [];
+  userInputItemQuantity: number = 1;
+  itemArray: any[] = [];
+
+  // Array of numbers from 1 to 50
+  // https://stackoverflow.com/questions/3746725/how-to-create-an-array-containing-1-n
+  quantityArray = [...Array(50).keys()].map(x=>++x);
 
   ngOnInit() {
   // For reactive form
@@ -36,12 +41,17 @@ export class OrderComponent implements OnInit {
   }
 
   onAddItem() {
-    (<FormArray>this.editForm.get('content')).push(new FormControl(this.userInputItem, [Validators.required]));
+    const itemObj = { id: this.userInputItem, quantity: this.userInputItemQuantity };
+    (<FormArray>this.editForm.get('content')).push(new FormControl(itemObj, [Validators.required]));
     this.updateItemArray();
   }
 
   itemValueBinder(event) {
     this.userInputItem = event.target.value;
+  }
+
+  updateQuantity(event) {
+    this.userInputItemQuantity = event.value;
   }
 
   get itemsArr() {
@@ -90,7 +100,7 @@ export class OrderComponent implements OnInit {
       this.editForm.patchValue({
         'name': data.name
       });
-      data.content.forEach((item: string) => {
+      data.content.forEach((item: any) => {
         (<FormArray>this.editForm.get('content')).push(new FormControl(item, [Validators.required]));
       })
     })

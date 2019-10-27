@@ -3,12 +3,8 @@
     text-align: center;
 }
 
-/* .itemList {
-    width:
-} */
-
-.itemText {
-    color: black;
+.description {
+    color: white;
 }
 
 .firstRow {
@@ -17,4 +13,12 @@
 
 .deleteButton {
     float: right;
+}
+
+.mat-label {
+    color: black;
+}
+
+.mat-select {
+    color: black;
 }

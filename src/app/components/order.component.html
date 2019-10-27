@@ -1,4 +1,4 @@
-<h1 style="text-align: center;">Shopping cart</h1>
+<h1 style="text-align: center; color:azure">Shopping cart</h1>
 <br>
 
 <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
@@ -25,9 +25,16 @@
         </mat-grid-list>
     </div>
     <br>
+    <mat-form-field fxLayout="row" fxLayoutAlign="center center">
+            <mat-label>Quantity</mat-label>
+            <mat-select [(value)]="userInputItemQuantity" (selectionChange)="updateQuantity($event)">
+              <mat-option [value]='q' *ngFor="let q of quantityArray; let i = index">{{ q }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    <br>
     <div fxLayout="row" fxLayoutAlign="center center" class='saveButton'>
         <button type="submit" mat-raised-button color="warn">Save</button>
-        <button type="button" mat-stroked-button color="basic" (click)="onLoad()">Load</button>
+        <button type="button" mat-raised-button color="basic" (click)="onLoad()">Load</button>
     </div>
 </form>
 
@@ -41,7 +48,7 @@
                 <button type="button" mat-raised-button color="warn" (click)="deleteItem(i)">Delete</button>
             </div>
             <div>
-                <mat-list-item  class='itemText'>{{ item }}</mat-list-item>
+                <mat-list-item  class='itemText'>{{ item.id }} Quantity: {{ item.quantity }}</mat-list-item>
             </div>
         </div>
     </mat-action-list>
